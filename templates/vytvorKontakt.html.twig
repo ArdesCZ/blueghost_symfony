@@ -1,0 +1,36 @@
+{% extends "base.html.twig" %}
+
+{% block title %}
+	Vložení nového kontaktu
+{% endblock title %}
+
+{# Stejné jako v upravKontakt.html.twig #}
+
+{% block body %}
+
+	{{form_start(form)}}
+	<div class="mb-3 col-sm-4">
+		<label class="form-label">Jméno</label>
+		{{ form_row(form.jmeno) }}
+	</div>
+	<div class="mb-3 col-sm-4">
+		<label class="form-label">Příjmení</label>
+		{{ form_row(form.prijmeni) }}
+	</div>
+	<div class="mb-3 col-sm-4">
+		<label class="form-label">Telefonní číslo</label>
+		{{ form_row(form.telefonniCislo) }}
+	</div>
+	<div class="mb-3 col-sm-4">
+		<label class="form-label">Email</label>
+		{{ form_row(form.email) }}
+	</div>
+	<div class="mb-3 col-sm-4">
+		<label class="form-label">Dlouhá poznámka</label>
+		{{ form_row(form.poznamka) }}
+	</div>
+
+	<button type="submit" class="btn btn-info" name="pridat">Přidat</button>
+	{{form_end(form)}}
+
+{% endblock body %}

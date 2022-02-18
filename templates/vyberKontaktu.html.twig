@@ -1,0 +1,42 @@
+{% extends "base.html.twig" %}
+
+{% block title %}
+	Úprava vybraného kontaktu
+{% endblock title %}
+
+
+{% block body %}
+
+<table class="table">
+	<thead>
+		<tr>
+			<th scope="col">#</th>
+			<th scope="col">Jméno a příjmení</th>
+			<th scope="col">Telefon</th>
+			<th scope="col">Email</th>
+			<th scope="col">Dlouhá poznámka</th>
+			<th scope="col">Upravit</th>
+		</tr>
+	</thead>
+	<tbody>
+
+		{# Výpis z proměnné vybraneKontakty z UpravaKontaktuController z metody vyberKontaktu, zde se vypysují všechny informace o kontaktech obsahující jméno z parametru routy (neboli vypiš vše o kontaktech obsahující jméno Jan) #}
+		{% for vybranyKontakt in vybraneKontakty %}
+
+			<tr>
+				<td>{{vybranyKontakt.id}}</td>
+				<td>{{vybranyKontakt.jmeno ~ " " ~ vybranyKontakt.prijmeni}}</td>
+				<td>{{vybranyKontakt.telefonniCislo}}</td>
+				<td>{{vybranyKontakt.email}}</td>
+				<td>{{vybranyKontakt.poznamka}}</td>
+				
+				{# Po stisku  použij routu na přesměrování do formuláře pro úpravu vybraného kontaktu podle vybraného idčka, formulář je v šabloně upravKontakt.html.twig, metoda obsluhující routu se nachází UpravaKontaktuController #}
+				<td><a class="btn btn-info" href="/uprava/{{vybranyKontakt.id}}">Upravit vybraný kontakt</a></td> 
+			</tr>
+
+		{% endfor %}
+	</tbody>
+</table>
+
+{% endblock body %}
+

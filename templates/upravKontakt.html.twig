@@ -1,0 +1,38 @@
+{% extends "base.html.twig" %}
+
+{% block title %}
+	Úprava vybraného kontaktu
+{% endblock title %}
+
+
+{% block body %}
+
+	{# Formulář odeslaný z controlleru UpravaKontaktuController, definice formuláře se nachází ve složce Form, používá se i pro vkládání nového kontaktu #}
+	{# Oproti Nette nelze přistupovat k prvkům formuláře přes n:name, tudíš typ, atributy, css, labely se musí psát v Form/KontaktFormularType a jsou zde taky komentáře #}
+	{{form_start(form)}}
+	<div class="mb-3 col-sm-4">
+		<label class="form-label">Jméno</label> {# Používám vlastní label a proto mám zakázaný výchozí z formuláře #}
+		{{ form_row(form.jmeno) }}
+	</div>
+	<div class="mb-3 col-sm-4">
+		<label class="form-label">Příjmení</label>
+		{{ form_row(form.prijmeni) }}
+	</div>
+	<div class="mb-3 col-sm-4">
+		<label class="form-label">Telefonní číslo</label>
+		{{ form_row(form.telefonniCislo) }}
+	</div>
+	<div class="mb-3 col-sm-4">
+		<label class="form-label">Email</label>
+		{{ form_row(form.email) }}
+	</div>
+	<div class="mb-3 col-sm-4">
+		<label class="form-label">Dlouhá poznámka</label>
+		{{ form_row(form.poznamka) }}
+	</div>
+
+	<button type="submit" class="btn btn-info" name="uprav">Upravit</button> {# Co se stane po stisku řeši funkce v UpravaKontaktuController #}
+	{{form_end(form)}}
+
+{% endblock body %}
+

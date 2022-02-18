@@ -1,0 +1,43 @@
+{% extends "base.html.twig" %} {# Toto znamená načti kompletní šablonu base.html.twig #}
+
+{# Jelikož máme načtenou celou stránku, tak můžeme tímto zápis měnit obsah jednotlivých bloků #}
+{% block title %} {# Změň obsah bloku title #}
+	Výpis adresáře
+{% endblock title %}
+
+{% block body %} {# Změň obsah bloku body neboli těla stránky #}
+	<table class="table">
+		<thead>
+			<tr>
+				<th scope="col">#</th>
+				<th scope="col">Jméno a příjmení</th>
+				<th scope="col">Telefon</th>
+				<th scope="col">Email</th>
+				<th scope="col">Dlouhá poznámka</th>
+				<th scope="col">Upravit</th>
+				<th scope="col">Smazat</th>
+			</tr>
+		</thead>
+		<tbody>
+
+			{# Výpis proměnné kontakty z controlleru AdresarController v cyklu, jelikož vypysujeme víc záznamů #}
+			{% for kontakt in kontakty %}
+
+				<tr>
+					<td>{{kontakt.id}}</td>
+					<td>{{kontakt.jmeno ~ " " ~ kontakt.prijmeni}}</td> {# Zřetězení dvou položek se provádí pomocí  ~, pozor musí být v jedné {{}}, dochází k zřetězení jména + mezery + příjmení   #}
+					<td>{{kontakt.telefonniCislo}}</td>
+					<td>{{kontakt.email}}</td>
+					<td>{{kontakt.poznamka}}</td>
+					
+					{# Šablony nemají pevnou vazbu na controller z toho důvodu lze mít žádanou routu v jakémkoliv controlleru  #}
+					<td><a class="btn btn-info" href="/{{kontakt.jmeno}}">Upravit</a></td> {# Po stisku přesměruj na routu a předá jí paramter jméno, podle routy se provádí metody v Controlleru #}
+					<td><a class="btn btn-danger" href="/smaz/{{kontakt.id}}">Smazat</a></td>
+				</tr>
+
+			{% endfor %} {# cykly, ify, formuláře a jiné bloky musí mít ukončení #}
+		</tbody>
+	</table>
+
+	<a class="btn btn-success" href="/kontakt/vytvor">Přidat kontakt</a>
+{% endblock body %}
